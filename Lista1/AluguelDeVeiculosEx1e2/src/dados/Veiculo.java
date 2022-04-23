@@ -1,3 +1,4 @@
+package dados;
 import java.util.Objects;
 
 public class Veiculo {
