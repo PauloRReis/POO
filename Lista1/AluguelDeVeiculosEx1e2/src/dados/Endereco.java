@@ -71,7 +71,7 @@ public class Endereco {
     }
 
     public String toString() {
-        return "rua='" + rua + "\nnumero=" + numero + "\nbairro='" + bairro + "\ncidade='" + cidade + "\nestado='" + estado + "\ncep='" + cep;
+        return "rua=" + rua + "\nnumero=" + numero + "\nbairro=" + bairro + "\ncidade=" + cidade + "\nestado=" + estado + "\ncep=" + cep;
     }
 
 }

@@ -6,8 +6,7 @@ public class Veiculo {
     private String modelo;
     private String marca;
     private int ano;
-    private Cliente cliente;
-    private Data data;
+    private Data dataVencimento;
 
     public String getModelo() {
         return modelo;
@@ -33,20 +32,12 @@ public class Veiculo {
         this.ano = ano;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     public Data getData() {
-        return data;
+        return dataVencimento;
     }
 
     public void setData(Data data) {
-        this.data = data;
+        this.dataVencimento = data;
     }
 
     public boolean equals(Object o) {
@@ -55,12 +46,11 @@ public class Veiculo {
         Veiculo veiculo = (Veiculo) o;
         return ano == veiculo.ano &&
                 Objects.equals(modelo, veiculo.modelo) &&
-                Objects.equals(marca, veiculo.marca) &&
-                Objects.equals(cliente, veiculo.cliente) &&
-                Objects.equals(data, veiculo.data);
+                Objects.equals(marca, veiculo.marca) && 
+                Objects.equals(dataVencimento, veiculo.dataVencimento);
     }
 
     public String toString() {
-        return "modelo='" + modelo + "\nmarca='" + marca + "\nano=" + ano + "\ncliente=" + cliente.toString() + "\ndata=" + data.toString();
+        return "Modelo=" + modelo + "\nMarca=" + marca + "\nAno=" + ano + "\n---Data Vencimento---\n" + dataVencimento.toString();
     }
 }

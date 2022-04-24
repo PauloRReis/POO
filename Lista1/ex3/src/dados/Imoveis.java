@@ -1,4 +1,4 @@
-package ex3;
+package dados;
 
 public class Imoveis {
 
@@ -30,8 +30,12 @@ public class Imoveis {
         this.valor = valor;
     }
 
+    public float areaTotal(){
+        return comprimento * largura;
+    }
+
     public String toString() {
-        return "Imoveis [comprimento=" + comprimento + ", largura=" + largura + ", valor=" + valor + "]";
+        return "Comprimento =" + comprimento + ", largura=" + largura + ", valor=" + valor + "]";
     }    
 
 }
