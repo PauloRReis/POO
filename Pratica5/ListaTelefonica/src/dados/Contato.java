@@ -3,7 +3,7 @@ package dados;
 public class Contato {
     
     private String nome;
-    private int telefone;
+    private String telefone;
 
     public String getNome() {
         return nome;
@@ -13,11 +13,11 @@ public class Contato {
         this.nome = nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

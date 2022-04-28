@@ -36,7 +36,8 @@ public class ListaTelefonica {
 
         String nome = contato.getNome().toUpperCase();
         List<Contato> contatosTemp = contatos.get(nome.charAt(0));
-        contatosTemp.remove(contato);
+        int posicao = contatosTemp.indexOf(contato);
+        contatosTemp.remove(posicao);
 
     }
 
@@ -49,6 +50,10 @@ public class ListaTelefonica {
 
     public Map<Character, List<Contato>> buscarContatos(){
         return contatos;
+    }
+
+    public String toString() {
+        return "Contatos =" + contatos;
     }
 
 
