@@ -29,7 +29,7 @@ public class Viveiro {
 
         float espacoTotal = comprimento*largura;
 
-        return espacoTotal-espacoOcupado();
+        return (espacoTotal - espacoOcupado());
     }
 
     public boolean adicionarAnimal(Animal animal){
@@ -39,7 +39,6 @@ public class Viveiro {
         }else{
             return false;
         }
-    
     }
 
     public String getNome() {
@@ -72,6 +71,10 @@ public class Viveiro {
 
     public void setAnimais(List<Animal> animais) {
         this.animais = animais;
+    }
+
+    public String toString() {
+        return "Nome="+ nome + "\nComprimento=" + comprimento + "\nLargura=" + largura +  "\nAnimais=" + animais;
     }
     
 }
