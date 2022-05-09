@@ -10,8 +10,8 @@ import dados.Peixe;
 import dados.Viveiro;
 import negocio.Zoologico;
 
-public class Principal {
-    
+public class Principal{
+
     static Zoologico sistema = new Zoologico();
     static Scanner s = new Scanner(System.in);
 
@@ -57,17 +57,17 @@ public class Principal {
 
             return aquario;
         }
-        
+
     }
 
     public static Animal dadosAnimal(){
-        
+
         System.out.println("Voce deseja cadastrar:\n1- Animal Terrestre\n2- Peixe");
         int escolha = Integer.valueOf(s.nextLine());
 
         if(escolha == 1){
             Animal animal = new Animal();
-    
+
             System.out.println("Nome: ");
             animal.setNome(s.nextLine());
             System.out.println("Cor: ");
@@ -86,7 +86,7 @@ public class Principal {
             return animal;
         }else{
             Peixe peixe = new Peixe();
-    
+
             System.out.println("Nome: ");
             peixe.setNome(s.nextLine());
             System.out.println("Cor: ");
@@ -106,7 +106,7 @@ public class Principal {
 
             return peixe;
         }
-        
+
     }
 
     public static void alocarAnimal(){
@@ -116,9 +116,9 @@ public class Principal {
         int escolhaAnimal = Integer.valueOf(s.nextLine()) - 1;
 
         System.out.println(sistema.mostraViveiro());
-        System.out.println("Seleciona o numero do viveiro que voce quer alocar o animal: ");
+        System.out.println("Seleciona o numero do viveiro ou aquario que voce quer alocar o animal: ");
         int escolhaViveiro = Integer.valueOf(s.nextLine()) - 1;
-        
+
         if(sistema.alocarAnimal(sistema.getAnimais().get(escolhaAnimal), sistema.getViveiros().get(escolhaViveiro)) == true){
             System.out.println("Animal alocado!!!");
         }else{
@@ -132,7 +132,7 @@ public class Principal {
 
         aquarios =  sistema.getSoAquarios();
 
-        aquarios.toString();
+        System.out.println(aquarios.toString());
     }
 
     public static void mostraSoViveiro(){
@@ -141,11 +141,11 @@ public class Principal {
 
         viveiros = sistema.getSoViveiros();
 
-        viveiros.toString();
+        System.out.println(viveiros.toString());
     }
 
     public static void main(String[] args) {
-        
+
         int opcao = 0;
 
         do{
@@ -155,7 +155,7 @@ public class Principal {
             opcao = Integer.valueOf(s.nextLine());
 
             switch(opcao){
-                
+
                 case 1:
                     sistema.cadastrarViveiro(dadosViveiro());
                     break;
@@ -175,7 +175,7 @@ public class Principal {
                 case 5:
                     mostraSoViveiro();
                     break;
-            
+
             }
         }while(opcao != 0);
 
