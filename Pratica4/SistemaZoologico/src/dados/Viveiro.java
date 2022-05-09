@@ -27,17 +27,27 @@ public class Viveiro {
 
     public float espacoDisponivel(){
 
-        float espacoTotal = comprimento*largura;
+        float espacoTotal = calculaEspaco();
 
         return (espacoTotal - espacoOcupado());
     }
 
     public boolean adicionarAnimal(Animal animal){
-        if(espacoDisponivel() > animal.calculaEspacoOcupado()*0.7){
-            animais.add(animal);
-            return true;
+
+        if(animal instanceof Peixe){
+            if(espacoDisponivel() > animal.calculaEspacoOcupado()*0.7){
+                animais.add(animal);
+                return true;
+            }else{
+                return false;
+            }
         }else{
-            return false;
+            if(espacoDisponivel() > animal.calculaEspacoOcupado()*0.7){
+                animais.add(animal);
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 
@@ -74,7 +84,7 @@ public class Viveiro {
     }
 
     public String toString() {
-        return "Nome="+ nome + "\nComprimento=" + comprimento + "\nLargura=" + largura +  "\nAnimais=" + animais;
+        return "Nome= "+ nome + "\nComprimento= " + comprimento + "\nLargura= " + largura +  "\nAnimais=" + animais;
     }
     
 }
