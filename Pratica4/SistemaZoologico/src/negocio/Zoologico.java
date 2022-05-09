@@ -6,6 +6,7 @@ import java.util.List;
 import dados.Viveiro;
 import dados.Animal;
 import dados.Aquario;
+import dados.Peixe;
 
 public class Zoologico {
 
@@ -20,14 +21,25 @@ public class Zoologico {
         animais.add(animal);
     }
 
-    public boolean alocarAnimal(Animal animal, Viveiro viveiro){
+    public boolean alocarAnimal(Animal animal,Viveiro viveiro){
 
-        if(((Viveiro) viveiros).adicionarAnimal(animal) == true){
-            return true;
-        }else{
-            return false;
+        if(animal instanceof Peixe && viveiro instanceof Aquario){
+            if(viveiro.adicionarAnimal(animal) == true){
+                return true;
+            }else{
+                return false;
+            }
         }
+            if(animal instanceof Animal && viveiro instanceof Viveiro){
+                if(viveiro.adicionarAnimal(animal) == true){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        
 
+        return false;
     }
 
     public List<Aquario> getSoAquarios(){
