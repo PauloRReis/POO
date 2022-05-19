@@ -13,7 +13,7 @@ public class Turma {
         listaAlunos.add(add);
     }
     public void ordenarAlunoPorMedia(){
-        Collections.sort((List<T>) listaAlunos);
+        //Collections.sort((List<T>) listaAlunos);
     }
     
 }
