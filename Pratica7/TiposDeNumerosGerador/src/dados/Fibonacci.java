@@ -1,3 +1,5 @@
+package dados;
+
 public abstract class Fibonacci extends Gerador{
 
     public void gerar(int n){
@@ -12,6 +14,5 @@ public abstract class Fibonacci extends Gerador{
             return fib(n-1) + fib(n-2);
         }
     }
-
 
 }

@@ -1,3 +1,5 @@
+package dados;
+
 public interface ISequencia {
     
     public int sortear();
@@ -6,6 +8,6 @@ public interface ISequencia {
     public double mediaGeometrica();
     public double variancia();
     public double desvioPadrao();
-    public double amplitude();
+    public long amplitude();
 
 }

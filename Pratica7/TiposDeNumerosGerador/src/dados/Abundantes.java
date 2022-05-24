@@ -1,4 +1,6 @@
-public abstract class Abundantes extends Gerador {
+package dados;
+
+public abstract class Abundantes extends Gerador{
     
     public void gerar(int n){
 
@@ -14,6 +16,5 @@ public abstract class Abundantes extends Gerador {
             }
         }
     }
-
 
 }

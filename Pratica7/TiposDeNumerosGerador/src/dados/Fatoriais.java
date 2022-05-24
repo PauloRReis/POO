@@ -1,3 +1,5 @@
+package dados;
+
 public abstract class Fatoriais extends Gerador{
 
     public void gerar(int n) {

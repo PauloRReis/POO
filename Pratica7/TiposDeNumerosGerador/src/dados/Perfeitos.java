@@ -1,3 +1,5 @@
+package dados;
+
 public abstract class Perfeitos extends Gerador{
     
     public void gerar(int n) {

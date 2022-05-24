@@ -1,3 +1,5 @@
+package dados;
+
 public abstract class NumerosPrimos extends Gerador{
     
     public void gerar(int n){
