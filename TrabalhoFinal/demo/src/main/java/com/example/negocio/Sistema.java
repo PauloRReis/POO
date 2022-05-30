@@ -37,11 +37,7 @@ public class Sistema {
     }
 
     public CharacterResponse[] getCharacter(String nome){
-        if(requests.getCharacter(nome).length == 0){
-            return null;
-        }else{
         return requests.getCharacter(nome);
-        }
     }
     public EpisodeReq[] getEpisode(Integer ep){
         return requests.getEpisode(ep);

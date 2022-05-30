@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ArquivoEpisodeDAO{
 
-    private final String caminho = "src/main/java/com/example/persistencia/files/episode.csv";
+    private final String caminho = "demo/src/main/java/com/example/persistencia/files/episode.csv";
     private static EditorTexto arquivo = new EditorTexto();
 
     private String toCSV(EpisodeReq episodeReq){

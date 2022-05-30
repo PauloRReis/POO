@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ArquivoCharacterDAO{
 
-    private final String caminho = "src/main/java/com/example/persistencia/files/characters.csv";
+    private final String caminho = "demo/src/main/java/com/example/persistencia/files/characters.csv";
     private static EditorTexto arquivo = new EditorTexto();
 
     private String toCSV(CharacterResponse characterResponse){

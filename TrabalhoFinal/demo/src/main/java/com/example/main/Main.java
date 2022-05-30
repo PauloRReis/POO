@@ -48,7 +48,7 @@ public class Main {
                     System.out.print("Digite o nome do Personagem: ");
                     String nome = scanner.nextLine();
 
-                    if(sistema.getCharacter(nome) == null){
+                    if(sistema.getCharacter(nome).length == 0){
                         System.out.println("\nPersonagem Nao Encontrado!!");
                     }else{
                         System.out.println("\n" + Arrays.toString(sistema.getCharacter(juntaNome(nome))) + "\n");
@@ -86,6 +86,7 @@ public class Main {
                     String nomeSalvar = scanner.nextLine();
 
                     sistema.adicionarCharacter(sistema.getCharacter(nomeSalvar)[0]);
+                    System.out.println("\nPersonagem Salvo!!\n");
                     break;
                 
                 case 6:
@@ -93,6 +94,7 @@ public class Main {
                     String nomeExcluir = scanner.nextLine();
 
                     sistema.removerCharacter(sistema.getCharacter(nomeExcluir)[0]);
+                    System.out.println("\nPersonagem Removido!!\n");
                     break;
                 
                 case 7:
@@ -108,6 +110,7 @@ public class Main {
                     Integer epSalvar = Integer.valueOf(scanner.nextLine());
 
                     sistema.adicionarEpisode(sistema.getEpisode(epSalvar)[0]);
+                    System.out.println("\nEpisodio Salvo!!\n");
                     break;
 
                 case 9:
@@ -115,6 +118,7 @@ public class Main {
                     int epExcluir = Integer.valueOf(scanner.nextLine());
 
                     sistema.removerEpisode(sistema.getEpisode(epExcluir)[0]);
+                    System.out.println("\nEpisodio Removido!!\n");
                     break;
 
                 case 10:
