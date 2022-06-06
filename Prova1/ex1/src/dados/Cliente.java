@@ -3,8 +3,8 @@ package dados;
 public class Cliente {
 
     private String nome;
-    private Float mensalidade;
-    private Float beneficio;
+    private double mensalidade;
+    private double beneficio;
     
     public String getNome() {
         return nome;
@@ -13,20 +13,18 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Float getMensalidade() {
+    public double getMensalidade() {
         return (mensalidade - beneficio);
     }
-    public void setMensalidade(Float mensalidade) {
+    public void setMensalidade(double mensalidade) {
         this.mensalidade = mensalidade;
     }
 
-    public Float getBeneficio() {
+    public double getBeneficio() {
         return beneficio;
     }
-    public void setBeneficio(Float beneficio) {
+    public void setBeneficio(double beneficio) {
         this.beneficio = beneficio;
     }
-
-    
     
 }

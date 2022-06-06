@@ -2,7 +2,9 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import dados.Cliente;
+import dados.ClienteOuro;
 
 public class Negocio{
 
@@ -16,9 +18,9 @@ public class Negocio{
         clientes.add(c);
     }
 
-    public float totalMensalidades(){
+    public double totalMensalidades(){
         
-        Float mensalidadesTotal = (float) 0.0;
+        double mensalidadesTotal = 0.0;
 
         for(int i = 0; i < clientes.size() ; i++){
             mensalidadesTotal += clientes.get(i).getMensalidade();
@@ -27,9 +29,9 @@ public class Negocio{
         return mensalidadesTotal;
     }
 
-    public float totalBeneficios(){
+    public double totalBeneficios(){
 
-        Float beneficiosTotal = (float)0.0;
+        double beneficiosTotal = 0.0;
 
         for(int i = 0; i< clientes.size() ; i++){
             beneficiosTotal += clientes.get(i).getBeneficio();
@@ -40,6 +42,15 @@ public class Negocio{
 
     public List<String> listaNomeClientesOuro(){
 
+        List<String> nomes = new ArrayList<String>();
+
+        for(int i = 0; i < clientes.size() ; i++){
+            if(clientes.get(i) instanceof ClienteOuro){
+                nomes.add(clientes.get(i).getNome());
+            }
+        }
+
+        return nomes;
     }
 
 }

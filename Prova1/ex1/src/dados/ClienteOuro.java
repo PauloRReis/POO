@@ -4,12 +4,12 @@ public class ClienteOuro extends Cliente{
     
     private int quantDependentes;
 
-    public Float getMensalidade(){
-        return (float) (getMensalidade()*0.8);
+    public double getMensalidade() {
+        return (super.getMensalidade()*0.8);
     }
 
-    public Float getBeneficio(){
-        return (float) (getBeneficio() *1.1);
+    public double getBeneficio(){
+        return (super.getBeneficio() *1.1);
     }
 
     public void setQuantDependentes(int quantDependentes) {
