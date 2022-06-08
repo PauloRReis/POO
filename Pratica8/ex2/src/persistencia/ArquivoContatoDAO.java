@@ -7,7 +7,7 @@ import dados.Contato;
 
 public class ArquivoContatoDAO{
 
-    private final String caminho = "ex2/src/persistencia/files/contatos.csv";
+    private final String caminho = "src/persistencia/files/contatos.csv";
     private EditorTexto editor = new EditorTexto();
 
     private String toCSV(Contato contato){

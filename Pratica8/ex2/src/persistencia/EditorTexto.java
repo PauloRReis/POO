@@ -34,7 +34,7 @@ public class EditorTexto{
 
             arq = new FileWriter(caminho, true);
             arq.write(linha);
-
+            arq.write("\n");
             arq.close();            
 
         }catch(Exception e){
