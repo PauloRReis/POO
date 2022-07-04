@@ -2,33 +2,47 @@ package negocio;
 
 
 import dadosAPI.*;
+import dadosAPI.Character;
+import excecoes.DeleteException;
+import excecoes.InsertException;
+import excecoes.SelectException;
+import persistencia.CharacterDAO;
+import persistencia.Conexao;
+import persistencia.EpisodeDAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Sistema {
-    
-    private Requests requests = new Requests();
-    private CharacterDAO characterDAO = new CharacterDAO();
-    private EpisodeDAO episodeDAO = new EpisodeDAO();
 
-    public void adicionarCharacter(CharacterResponse c){
+    private Requests requests = new Requests();
+    private CharacterDAO characterDAO;
+    private EpisodeDAO episodeDAO;
+
+    public Sistema(String senha) throws ClassNotFoundException, SQLException, SelectException{
+        Conexao.setSenha(senha);
+        characterDAO = CharacterDAO.getInstance();
+        episodeDAO = EpisodeDAO.getInstance();
+    }
+
+    public void adicionarCharacter(CharacterResponse c) throws SelectException, InsertException {
         characterDAO.insert(c);
     }
-    public void removerCharacter(CharacterResponse c){
+    public void removerCharacter(CharacterResponse c) throws DeleteException {
         characterDAO.delete(c);
     }
-    public List<CharacterResponse> getListaCharacter(){
-        return characterDAO.getAll();
+    public List<Character> getListaCharacter() throws SelectException {
+        return characterDAO.selectAll();
     }
 
-    public void adicionarEpisode(EpisodeReq ep){
+    public void adicionarEpisode(EpisodeReq ep) throws SelectException, InsertException {
         episodeDAO.insert(ep);
     }
-    public void removerEpisode(EpisodeReq ep){
+    public void removerEpisode(EpisodeReq ep) throws DeleteException {
         episodeDAO.delete(ep);
     }
-    public List<EpisodeReq> getListaEpisode(){
-        return episodeDAO.getAll();
+    public List<Episode> getListaEpisode() throws SelectException {
+        return episodeDAO.selectAll();
     }
 
     public CharacterResponse[] getCharacter(String nome){

@@ -1,6 +1,9 @@
 package persistencia;
 
+import dadosAPI.Character;
 import dadosAPI.CharacterResponse;
+import dadosAPI.Episode;
+import excecoes.DeleteException;
 import excecoes.InsertException;
 import excecoes.SelectException;
 
@@ -9,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CharacterDAO {
 
@@ -18,7 +23,7 @@ public class CharacterDAO {
     private PreparedStatement select;
     private PreparedStatement insert;
     private PreparedStatement delete;
-    private PreparedStatement update;
+    private PreparedStatement selectAll;
 
     public static CharacterDAO getInstance() throws ClassNotFoundException, SQLException, SelectException {
         if(instance == null){
@@ -30,8 +35,10 @@ public class CharacterDAO {
     private CharacterDAO() throws ClassNotFoundException, SQLException, SelectException{
         Connection conexao = Conexao.getConexao();
         selectNewId = conexao.prepareStatement("select nextval('id_character')");
-        insert = conexao.prepareStatement("insert into endereco values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        insert = conexao.prepareStatement("insert into character values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         select = conexao.prepareStatement("select * from character where id_character = ?");
+        delete = conexao.prepareStatement("delete from character where id_character = ?");
+        selectAll = conexao.prepareStatement("select * from character");
     }
 
     private int selectNewId() throws SelectException{
@@ -41,7 +48,7 @@ public class CharacterDAO {
                 return rs.getInt(1);
             }
         } catch (SQLException e) {
-            throw new SelectException("Erro ao buscar novo id da tabela endereco");
+            throw new SelectException("Erro ao buscar novo id da tabela character");
         }
         return 0;
     }
@@ -61,22 +68,71 @@ public class CharacterDAO {
             insert.setString(11, character.getCategory());
             insert.setString(12, Arrays.toString(character.getBetter_call_saul_appearance()));
         } catch (SQLException e) {
-            throw new InsertException("Erro ao inserir endereco");
+            throw new InsertException("Erro ao inserir personagem!!");
         }
     }
 
-    public CharacterResponse select(int character) throws SelectException{
+    public Character select(int character) throws SelectException{
         try {
             select.setInt(1, character);
             ResultSet rs = select.executeQuery();
             if(rs.next()){
                 int id = rs.getInt(1);
-                String
+                Integer char_id = rs.getInt(2);
+                String name = rs.getString(3);
+                String birthday = rs.getString(4);
+                String occupation = rs.getString(5);
+                String img = rs.getString(6);
+                String status = rs.getString(7);
+                String nickname = rs.getString(8);
+                String appearance = rs.getString(9);
+                String portrayed = rs.getString(10);
+                String category = rs.getString(11);
+                String better_call_saul_appearance = rs.getString(12);
+                return new Character(id, char_id,name,birthday,occupation,img,status,nickname,appearance,portrayed,category,better_call_saul_appearance);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new SelectException("Erro buscar personagem!!");
         }
+        return null;
     }
 
+    public void delete(CharacterResponse character) throws DeleteException {
+        try{
+            delete.setInt(1, character.getChar_id());
+            delete.executeUpdate();
+        } catch (SQLException e) {
+            throw new DeleteException("Erro ao deletar personagem!!");
+        }
+
+    }
+
+    public List<Character> selectAll() throws SelectException{
+
+        List<Character> characters = new LinkedList<Character>();
+
+        try{
+            ResultSet rs = selectAll.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt(1);
+                Integer char_id = rs.getInt(2);
+                String name = rs.getString(3);
+                String birthday = rs.getString(4);
+                String occupation = rs.getString(5);
+                String img = rs.getString(6);
+                String status = rs.getString(7);
+                String nickname = rs.getString(8);
+                String appearance = rs.getString(9);
+                String portrayed = rs.getString(10);
+                String category = rs.getString(11);
+                String better_call_saul_appearance = rs.getString(12);
+
+                characters.add(new Character(id, char_id,name,birthday,occupation,img,status,nickname,appearance,portrayed,category,better_call_saul_appearance));
+            }
+        } catch (SQLException e) {
+            throw  new SelectException("Erro ao buscar episodios!!");
+        }
+        return characters;
+    }
 
 }

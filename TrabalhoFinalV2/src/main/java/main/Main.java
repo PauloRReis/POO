@@ -1,14 +1,32 @@
 package main;
 
+import excecoes.DeleteException;
+import excecoes.InsertException;
+import excecoes.SelectException;
+import jdk.incubator.foreign.FunctionDescriptor;
 import negocio.Sistema;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Arrays;
 
 
 public class Main {
 
-    private static Sistema sistema = new Sistema();
+    private static Sistema sistema;
+
+    static {
+        try {
+            sistema = new Sistema("udesc");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (SelectException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static void menu(){
@@ -34,7 +52,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws SelectException, InsertException, DeleteException {
 
         int op = 0;
 
