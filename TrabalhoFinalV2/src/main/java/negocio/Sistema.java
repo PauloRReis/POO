@@ -15,11 +15,11 @@ import java.util.List;
 
 public class Sistema {
 
-    private Requests requests = new Requests();
-    private CharacterDAO characterDAO;
-    private EpisodeDAO episodeDAO;
+    private final Requests requests = new Requests();
+    private final CharacterDAO characterDAO;
+    private final EpisodeDAO episodeDAO;
 
-    public Sistema(String senha) throws ClassNotFoundException, SQLException, SelectException{
+    public Sistema(String senha) throws SQLException, SelectException, ClassNotFoundException {
         Conexao.setSenha(senha);
         characterDAO = CharacterDAO.getInstance();
         episodeDAO = EpisodeDAO.getInstance();

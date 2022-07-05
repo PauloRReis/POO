@@ -16,6 +16,7 @@ public class Episode {
     public Episode(Integer id,Integer episode_id, String title, String season, String episode, String air_date, String characters, String series) {
 
     }
+    public Episode(){}
 
     public String toString() {
         return "ID Episodio: " + episode_id + "\nTitulo: " + title + "\nTemporada: " + season + "\nEpisodio: " + episode + "\nData transmitida: " + air_date + "\nPersonagens: " + characters + "\nSerie: " + series + "\n";

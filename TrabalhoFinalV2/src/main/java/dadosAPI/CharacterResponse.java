@@ -111,7 +111,5 @@ public class CharacterResponse{
         this.better_call_saul_appearance = better_call_saul_appearance;
     }
 
-   
-
 }
 

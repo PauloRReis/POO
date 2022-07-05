@@ -1,7 +1,5 @@
 package dadosAPI;
 
-import java.util.Arrays;
-
 public class Character {
 
     private Integer id;
@@ -20,6 +18,7 @@ public class Character {
     public Character(){}
 
     public Character(Integer id,Integer char_id, String name, String birthday, String occupation, String img, String status, String nickname, String appearance, String portrayed, String category, String better_call_saul_appearance) {
+
     }
 
     @Override

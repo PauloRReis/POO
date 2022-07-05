@@ -3,7 +3,6 @@ package main;
 import excecoes.DeleteException;
 import excecoes.InsertException;
 import excecoes.SelectException;
-import jdk.incubator.foreign.FunctionDescriptor;
 import negocio.Sistema;
 
 import java.sql.SQLException;
@@ -13,21 +12,18 @@ import java.util.Arrays;
 
 public class Main {
 
-    private static Sistema sistema;
+    private static final Sistema sistema;
 
     static {
         try {
-            sistema = new Sistema("udesc");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (SelectException e) {
-            e.printStackTrace();
+            sistema = new Sistema("folgado23");
+        } catch (SQLException | SelectException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private static Scanner scanner = new Scanner(System.in);
+
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void menu(){
         System.out.println("\n--------MENU--------");
@@ -46,9 +42,7 @@ public class Main {
 
     public static String juntaNome(String nome){
 
-        String nomeJunto = nome.replaceAll(" ", "+");
-        
-        return nomeJunto;
+        return nome.replaceAll(" ", "+");
     }
 
 
@@ -60,7 +54,7 @@ public class Main {
 
             menu();
             System.out.print("Digite o numero escolhido do menu: ");
-            op = Integer.valueOf(scanner.nextLine());
+            op = Integer.parseInt(scanner.nextLine());
 
             switch (op) {
                 case 1:
@@ -134,7 +128,7 @@ public class Main {
 
                 case 9:
                     System.out.print("Digite o numero do Episodio que voce deseja remover: ");
-                    int epExcluir = Integer.valueOf(scanner.nextLine());
+                    int epExcluir = Integer.parseInt(scanner.nextLine());
 
                     sistema.removerEpisode(sistema.getEpisode(epExcluir)[0]);
                     System.out.println("\nEpisodio Removido!!\n");

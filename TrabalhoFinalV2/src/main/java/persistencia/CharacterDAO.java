@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,11 +35,12 @@ public class CharacterDAO {
 
     private CharacterDAO() throws ClassNotFoundException, SQLException, SelectException{
         Connection conexao = Conexao.getConexao();
-        selectNewId = conexao.prepareStatement("select nextval('id_character')");
-        insert = conexao.prepareStatement("insert into character values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        selectNewId = conexao.prepareStatement("select nextVal('id_char')");
+        insert = conexao.prepareStatement("insert into character values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         select = conexao.prepareStatement("select * from character where id_character = ?");
-        delete = conexao.prepareStatement("delete from character where id_character = ?");
+        delete = conexao.prepareStatement("delete from character where char_id = ?");
         selectAll = conexao.prepareStatement("select * from character");
+
     }
 
     private int selectNewId() throws SelectException{
@@ -67,6 +69,7 @@ public class CharacterDAO {
             insert.setString(10, character.getPortrayed());
             insert.setString(11, character.getCategory());
             insert.setString(12, Arrays.toString(character.getBetter_call_saul_appearance()));
+            insert.executeUpdate();
         } catch (SQLException e) {
             throw new InsertException("Erro ao inserir personagem!!");
         }
@@ -109,25 +112,26 @@ public class CharacterDAO {
 
     public List<Character> selectAll() throws SelectException{
 
-        List<Character> characters = new LinkedList<Character>();
+        List<Character> characters = new ArrayList<Character>();
 
         try{
             ResultSet rs = selectAll.executeQuery();
             while(rs.next()){
-                int id = rs.getInt(1);
-                Integer char_id = rs.getInt(2);
-                String name = rs.getString(3);
-                String birthday = rs.getString(4);
-                String occupation = rs.getString(5);
-                String img = rs.getString(6);
-                String status = rs.getString(7);
-                String nickname = rs.getString(8);
-                String appearance = rs.getString(9);
-                String portrayed = rs.getString(10);
-                String category = rs.getString(11);
-                String better_call_saul_appearance = rs.getString(12);
+                Character personagem = new Character();
+                personagem.setId(rs.getInt(1));
+                personagem.setChar_id(rs.getInt(2));
+                personagem.setName(rs.getString(3));
+                personagem.setBirthday(rs.getString(4));
+                personagem.setOccupation(rs.getString(5));
+                personagem.setImg(rs.getString(6));
+                personagem.setStatus(rs.getString(7));
+                personagem.setNickname(rs.getString(8));
+                personagem.setAppearance(rs.getString(9));
+                personagem.setPortrayed(rs.getString(10));
+                personagem.setCategory(rs.getString(11));
+                personagem.setBetter_call_saul_appearance(rs.getString(12));
 
-                characters.add(new Character(id, char_id,name,birthday,occupation,img,status,nickname,appearance,portrayed,category,better_call_saul_appearance));
+                characters.add(personagem);
             }
         } catch (SQLException e) {
             throw  new SelectException("Erro ao buscar episodios!!");

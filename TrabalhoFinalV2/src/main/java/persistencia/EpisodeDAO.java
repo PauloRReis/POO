@@ -33,10 +33,10 @@ public class EpisodeDAO {
 
     private EpisodeDAO() throws ClassNotFoundException, SQLException, SelectException{
         Connection conexao = Conexao.getConexao();
-        selectNewId = conexao.prepareStatement("select nextval('id_character')");
+        selectNewId = conexao.prepareStatement("select nextVal('id_ep')");
         insert = conexao.prepareStatement("insert into episode values(?, ?, ?, ?, ?, ?, ?, ?)");
-        select = conexao.prepareStatement("select * from episode where id_episode = ?");
-        delete = conexao.prepareStatement("delete from episode where id_episode = ?");
+        select = conexao.prepareStatement("select * from episode where episode_id = ?");
+        delete = conexao.prepareStatement("delete from episode where episode_id = ?");
         selectAll = conexao.prepareStatement("select * from episode");
     }
 
@@ -62,14 +62,15 @@ public class EpisodeDAO {
             insert.setString(6, episode.getAir_date());
             insert.setString(7, Arrays.toString(episode.getCharacters()));
             insert.setString(8, episode.getSeries());
+            insert.executeUpdate();
         } catch (SQLException e) {
             throw new InsertException("Erro ao inserir episodio!!");
         }
     }
 
-    public Episode select(int character) throws SelectException{
+    public Episode select(int episodio) throws SelectException{
         try {
-            select.setInt(1, character);
+            select.setInt(1, episodio);
             ResultSet rs = select.executeQuery();
             if(rs.next()){
                 int id = rs.getInt(1);
@@ -105,16 +106,17 @@ public class EpisodeDAO {
         try{
             ResultSet rs = selectAll.executeQuery();
             while(rs.next()){
-                int id = rs.getInt(1);
-                Integer episode_id = rs.getInt(2);
-                String title = rs.getString(3);
-                String season = rs.getString(4);
-                String episode = rs.getString(5);
-                String air_date = rs.getString(6);
-                String characters = rs.getString(7);
-                String series = rs.getString(8);
+                Episode episodio = new Episode();
+                episodio.setId(rs.getInt(1));
+                episodio.setEpisode_id(rs.getInt(2));
+                episodio.setTitle(rs.getString(3));
+                episodio.setSeason(rs.getString(4));
+                episodio.setEpisode(rs.getString(5));
+                episodio.setAir_date(rs.getString(6));
+                episodio.setCharacters(rs.getString(7));
+                episodio.setSeries(rs.getString(8));
 
-                episodes.add(new Episode(id, episode_id,title,season,episode,air_date,characters,series));
+                episodes.add(episodio);
             }
         } catch (SQLException e) {
             throw  new SelectException("Erro ao buscar episodios!!");
