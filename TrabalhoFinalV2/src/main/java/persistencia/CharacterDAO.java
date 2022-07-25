@@ -2,7 +2,6 @@ package persistencia;
 
 import dadosAPI.Character;
 import dadosAPI.CharacterResponse;
-import dadosAPI.Episode;
 import excecoes.DeleteException;
 import excecoes.InsertException;
 import excecoes.SelectException;
@@ -13,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class CharacterDAO {

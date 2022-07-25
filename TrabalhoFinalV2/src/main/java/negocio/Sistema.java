@@ -1,8 +1,9 @@
 package negocio;
 
 
-import dadosAPI.*;
+import apresentacao.PersonagemTableModel;
 import dadosAPI.Character;
+import dadosAPI.*;
 import excecoes.DeleteException;
 import excecoes.InsertException;
 import excecoes.SelectException;
@@ -57,5 +58,6 @@ public class Sistema {
     public QuoteReq[] getQuote(){
         return requests.getQuote();
     }
+
 
 }
